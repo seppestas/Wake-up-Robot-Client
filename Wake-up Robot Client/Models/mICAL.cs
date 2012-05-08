@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DDay.iCal;
+using DDay.iCal.Components;
+using DDay.iCal.DataTypes;
 
 namespace Wake_up_Robot_Client.Models
 {
@@ -16,38 +18,24 @@ namespace Wake_up_Robot_Client.Models
     {
         
         /// <summary>
-        /// Reads a Textreader and returns the list of alarms contained in the TextReader.
+        /// Reads an ical file and returns the list of alarms contained in the ical.
         /// </summary>
-        /// <param name="icalReader"></param>
-        /// <returns></returns>
+        /// <param name="icalFileLocation">Ical file location</param>
+        /// <returns>list of alarms contained in the ical</returns>
         static public List<Alarm> GetAlarms(String icalFileLocation)
         {
+            iCalendar ical;
             List<Alarm> alarms = new List<Alarm>();
-            iCalendarCollection calendars = new iCalendarCollection();
-            calendars.AddRange(iCalendar.LoadFromFile(icalFileLocation));
-            foreach (iCalendar calendar in calendars)
+            
+            ical = iCalendar.LoadFromFile(icalFileLocation);
+            foreach (Event evt in ical.Events)
             {
-                foreach (Event calEvent in calendar.Events)
+                foreach (DDay.iCal.Components.Alarm icalAlarm in evt.Alarms)
                 {
-                    foreach (IAlarm evAlarm in calEvent.Alarms)
-                    {
-                        Alarm alarm = new Alarm();
-                        alarm.Description=calEvent.Description;
-
-                        if (evAlarm.Trigger == (ITrigger)calEvent.DTEnd) //trigger of alarm on end of event
-                        {
-                            alarm.DateTime=calEvent.DTEnd.Value;
-                        }
-                        else
-                        {
-                            alarm.DateTime=calEvent.DTStart.Value;
-                        }
-
-                        calEvent.RecurrenceRules
-                        
-                    }
+                    Alarm alarm = new Alarm();
                 }
             }
+           
             return alarms;
         }
     }

@@ -73,7 +73,6 @@
     </Compile>
     <Compile Include="Controllers\cMain.cs" />
     <Compile Include="Models\mGoogle.cs" />
-    <Compile Include="Models\mICAL.cs" />
     <Compile Include="Models\mXML.cs" />
     <Compile Include="Views\vMain.xaml.cs">
       <DependentUpon>vMain.xaml</DependentUpon>
