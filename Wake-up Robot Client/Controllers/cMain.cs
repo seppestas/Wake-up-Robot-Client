@@ -53,11 +53,9 @@ namespace Wake_up_Robot_Client.Controllers
         {
             get
             {
-                if (alarms != null)
+                if (FutureAlarms != null && FutureAlarms.Count > 0)
                 {
-                    return alarms
-                        .Where(a => a.DateTime >= DateTime.Now)
-                        .Last().DateTimeDescription;
+                    return FutureAlarms.Last().DateTimeDescription;
                 }
                 else
                 {
@@ -73,14 +71,11 @@ namespace Wake_up_Robot_Client.Controllers
         {
             get
             {
-                if (alarms != null)
+                if (alarms != null && FutureAlarms.Count > 0)
                 {
-                    DateTime time = alarms
-                        .Where(a => a.DateTime >= DateTime.Now)
-                        .Last().DateTime;
+                    DateTime time = FutureAlarms.Last().DateTime;
                     time = new DateTime((time - DateTime.Now).Ticks);
                     return "Volgende alarm binnen: " + time.ToString("hhu mm'm' ss's'");
-                    
                 }
                 else
                 {

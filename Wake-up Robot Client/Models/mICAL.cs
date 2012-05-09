@@ -16,7 +16,7 @@ namespace Wake_up_Robot_Client.Models
     /// </remarks>
     static class mICAL
     {
-        
+
         /// <summary>
         /// Reads an ical file and returns the list of alarms contained in the ical.
         /// </summary>
@@ -26,18 +26,18 @@ namespace Wake_up_Robot_Client.Models
         {
             iCalendar ical;
             List<Alarm> alarms = new List<Alarm>();
-            
+
             ical = iCalendar.LoadFromFile(icalFileLocation);
             foreach (Event evt in ical.Events)
             {
                 foreach (DDay.iCal.Components.Alarm icalAlarm in evt.Alarms)
                 {
                     Alarm alarm = new Alarm();
+
                 }
             }
-           
+
             return alarms;
         }
     }
-
-   
+}

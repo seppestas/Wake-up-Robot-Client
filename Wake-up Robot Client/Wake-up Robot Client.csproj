@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DDay.iCal">
-      <HintPath>..\..\..\..\..\..\Downloads\DDay-iCal-1_0_1-BetaCandidate-bin\DDay.iCal.dll</HintPath>
+      <HintPath>Include\DDay.iCal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\cProgrammer.cs" />
+    <Compile Include="Models\mICAL.cs" />
     <Compile Include="Views\vNewAlarm.xaml.cs">
       <DependentUpon>vNewAlarm.xaml</DependentUpon>
     </Compile>
