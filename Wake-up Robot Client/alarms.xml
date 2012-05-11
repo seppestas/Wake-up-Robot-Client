@@ -36,4 +36,10 @@
     <RecurrencyInterval>00:00:00</RecurrencyInterval>
     <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
   </Alarm>
+  <Alarm Enabled="true">
+    <DateTime>2012-05-12T12:03:00</DateTime>
+    <Description>Test</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
 </ArrayOfAlarm>
