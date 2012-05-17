@@ -11,8 +11,8 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition />
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="216*" />
+            <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
         
         <!--Text at top-->
@@ -79,12 +79,10 @@
         </StackPanel>
         
         <!--Progress-->
-        <StackPanel Margin="0,5,0,5" Height="50" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="3">
+        <StackPanel Margin="0,0,0,5" Height="57" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="2">
             <ProgressBar
                 Name="progressBar"
-                Height="21"
-                VerticalAlignment="Top" 
-                Margin="0,5,0,0"
+                Height="21" Margin="0,5,0,0"
             />
             <Label 
                 Name="lblStatus" Content="{Binding TimeTillNextAlarmDescr}" 
