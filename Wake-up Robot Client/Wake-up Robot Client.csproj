@@ -59,10 +59,32 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\cProgrammer.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Models\mICAL.cs" />
+    <Compile Include="Views\vGoogle.xaml.cs">
+      <DependentUpon>vGoogle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\vICal.xaml.cs">
+      <DependentUpon>vICal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\vImport.xaml.cs">
+      <DependentUpon>vImport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\vNewAlarm.xaml.cs">
       <DependentUpon>vNewAlarm.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\vGoogle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\vICal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\vImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\vMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

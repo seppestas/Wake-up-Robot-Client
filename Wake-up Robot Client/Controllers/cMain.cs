@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Wake_up_Robot_Client.Models;
-using Wake_up_Robot_Client.Vieuws;
+using Wake_up_Robot_Client.Views;
 
 namespace Wake_up_Robot_Client.Controllers
 {
@@ -14,10 +14,12 @@ namespace Wake_up_Robot_Client.Controllers
     /// </summary>
     class cMain : INotifyPropertyChanged
     {
+        #region private variables
         private static volatile cMain instance;
         private static object syncRoot = new Object();
 
         ObservableCollection<Alarm> alarms;
+        #endregion // private varibles
 
         public event PropertyChangedEventHandler PropertyChanged;
         
@@ -109,16 +111,35 @@ namespace Wake_up_Robot_Client.Controllers
         /// <summary>
         /// Shows a new intance of the new alarm window
         /// </summary>
-        public void NewAlarmWindow()
+        public void ShowNewAlarmWindow()
         {
             vNewAlarm newAlarm = new vNewAlarm();
             newAlarm.Show();
         }
 
-        public void NewAlarmWindow(Alarm alarm)
+        public void ShowNewAlarmWindow(Alarm alarm)
         {
-            vNewAlarm newAlarm = new vNewAlarm(alarm);
-            newAlarm.Show();
+            vNewAlarm newAlarmWindow = new vNewAlarm(alarm);
+            newAlarmWindow.Show();
+        }
+
+        public void ShowImportWindow()
+        {
+            vImport importWindow = new vImport();
+            importWindow.Show();
+
+        }
+
+        public void ShowImportIcalWindow()
+        {
+            vICal iCalWindow = new vICal();
+            iCalWindow.Show();
+        }
+
+        public void ShowImportGoogleWindow()
+        {
+            vGoogle googleWindow = new vGoogle();
+            googleWindow.Show();
         }
 
         public void AddAlarm(Alarm alarm)

@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wake_up_Robot_Client.Controllers;
 
-namespace Wake_up_Robot_Client.Vieuws
+namespace Wake_up_Robot_Client.Views
 {
     /// <summary>
     /// Interaction logic for vNewAlarm.xaml
@@ -28,11 +28,14 @@ namespace Wake_up_Robot_Client.Vieuws
 
         public vNewAlarm(Alarm alarm)
         {
-            Initialize();
             
-            txtDescription.Text = alarm.Description;
-            txtTime.Text = alarm.DateTime.ToString("HH:mm:ss");
-            txtDate.Text = alarm.DateTime.ToString("dd/MM/yyy");
+            Initialize();
+            if (alarm != null)
+            {
+                txtDescription.Text = alarm.Description;
+                txtTime.Text = alarm.DateTime.ToString("HH:mm:ss");
+                txtDate.Text = alarm.DateTime.ToString("dd/MM/yyy");
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

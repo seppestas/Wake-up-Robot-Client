@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wake_up_Robot_Client.Controllers;
-using Wake_up_Robot_Client.Vieuws;
+using Wake_up_Robot_Client.Views;
 using System.IO.Ports;
 
 namespace Wake_up_Robot_Client
@@ -49,24 +49,29 @@ namespace Wake_up_Robot_Client
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            controller.NewAlarmWindow();
+            controller.ShowNewAlarmWindow();
         }
         
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            controller.NewAlarmWindow(lstAlarms.SelectedItem as Alarm);
+            if (lstAlarms.SelectedItem != null)
+            {
+                controller.ShowNewAlarmWindow(lstAlarms.SelectedItem as Alarm);
+            }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-
-            controller.RemoveAlarm(lstAlarms.SelectedItem as Alarm);
+            if (lstAlarms.SelectedItem != null)
+            {
+                controller.RemoveAlarm(lstAlarms.SelectedItem as Alarm);
+            }
             
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.ShowImportWindow();
         }
 
         private void btnProgram_Click(object sender, RoutedEventArgs e)
