@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 using System.Windows;
+using System.ComponentModel;
 /***************************************************************************************
  * Legend for the putting the Datetime in the µC 
  *  v = reply version
@@ -23,7 +24,9 @@ using System.Windows;
  *          b = minute +1
  *          c = second +10
  *          d = second +1
- */ 
+ */
+
+public delegate void WriteProgress(int progress);
 namespace Wake_up_Robot_Client.Controllers
 {
     class cProgrammer
@@ -31,6 +34,17 @@ namespace Wake_up_Robot_Client.Controllers
         private SerialPort port;
         private byte[] buf = new byte[9];
         char[] buf2 = new char[4096];
+        BackgroundWorker bw;
+        List<Alarm> alarmsToWrite;
+        public event WriteProgress WorkerProgress;
+
+        public bool Exists
+        {
+            get
+            {
+                return SerialPort.GetPortNames().Contains(port.PortName);
+            }
+        }
 
         #region public
         
@@ -41,6 +55,46 @@ namespace Wake_up_Robot_Client.Controllers
             {
                 port = new SerialPort(portname, 9600);
                 port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+                bw = new BackgroundWorker();
+                bw.WorkerSupportsCancellation = false;
+                bw.WorkerReportsProgress = true;
+                bw.DoWork += new DoWorkEventHandler(worker_DoWork);
+                bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            }
+            catch (Exception ex)
+            {
+                throw ex; //TODO: Exception handling
+            }
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (WorkerProgress != null)
+            {
+                WorkerProgress(e.ProgressPercentage);
+            }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            try
+            {
+                int i = 1;
+                worker.ReportProgress(0);
+                if (!port.IsOpen)
+                    port.Open(); //Open the connection if it's not already open
+
+                port.Write(CurrentTimeBuffer, 0, CurrentTimeBuffer.Length);
+                foreach (Alarm alarm in alarmsToWrite)
+                {
+                    worker.ReportProgress((i / alarmsToWrite.Count) * 50);
+                    var alarmbuffer = AlarmBuffer(alarm);
+                    port.Write(alarmbuffer, 0, alarmbuffer.Length);
+                    alarm.Enable();
+                    worker.ReportProgress((i / alarmsToWrite.Count) * 100);
+                    i++;
+                }
             }
             catch (Exception ex)
             {
@@ -50,23 +104,12 @@ namespace Wake_up_Robot_Client.Controllers
 
         public void ProgramAlarms(List<Alarm> alarms)
         {
-            try
+            alarmsToWrite = alarms;
+            if (bw.IsBusy != true)
             {
-                if (!port.IsOpen)
-                    port.Open(); //Open the connection if it's not already open
+                bw.RunWorkerAsync();
+            }
 
-                port.Write(CurrentTimeBuffer, 0, CurrentTimeBuffer.Length);
-                foreach (Alarm alarm in alarms)
-                {
-                    var alarmbuffer = AlarmBuffer(alarm);
-                    port.Write(alarmbuffer, 0, alarmbuffer.Length);
-                    alarm.Enable();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex; //TODO: Exception handling
-            }
         }
 
         
@@ -85,7 +128,6 @@ namespace Wake_up_Robot_Client.Controllers
             buf[1] = (byte)'a';            
             buf[2] = (byte)'\r';         
             port.Write(buf, 0, 3);
-           
                            
         }
 

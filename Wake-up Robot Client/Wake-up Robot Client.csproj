@@ -59,7 +59,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\cProgrammer.cs" />
-    <Compile Include="Enums.cs" />
     <Compile Include="Models\mICAL.cs" />
     <Compile Include="Views\vGoogle.xaml.cs">
       <DependentUpon>vGoogle.xaml</DependentUpon>

@@ -85,6 +85,14 @@ namespace Wake_up_Robot_Client.Controllers
                 }
             }
         }
+
+        public string[] PortNames
+        {
+            get
+            {
+                return cProgrammer.GetSerialPortNames();
+            }
+        }
         #endregion //properties
 
         #region public
@@ -108,6 +116,7 @@ namespace Wake_up_Robot_Client.Controllers
             }
         }
 
+        #region open windows
         /// <summary>
         /// Shows a new intance of the new alarm window
         /// </summary>
@@ -142,6 +151,8 @@ namespace Wake_up_Robot_Client.Controllers
             googleWindow.Show();
         }
 
+        #endregion open windows
+
         public void AddAlarm(Alarm alarm)
         {
             if (alarm.DateTime < alarms.Last().DateTime && alarm.DateTime > DateTime.Now)
@@ -149,6 +160,14 @@ namespace Wake_up_Robot_Client.Controllers
                 NotifyPropertyChanged("NextAlarmDescription");
             }
             alarms.Add(alarm);            
+        }
+
+        public void AddAlarms(List<Alarm> alarms)
+        {
+            foreach (Alarm alarm in alarms)
+            {
+                AddAlarm(alarm);
+            }
         }
 
         public void RemoveAlarm(Alarm alarm)
@@ -159,6 +178,11 @@ namespace Wake_up_Robot_Client.Controllers
         public void StoreAlarms()
         {
             mXML.StoreAlarms(new List<Alarm>(alarms));
+        }
+
+        public void LoadIcalAlarms(String icalFileLocation)
+        {
+            AddAlarms(mICAL.GetAlarms(icalFileLocation));
         }
 
         #endregion //public

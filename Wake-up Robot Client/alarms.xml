@@ -42,4 +42,22 @@
     <RecurrencyInterval>00:00:00</RecurrencyInterval>
     <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
   </Alarm>
+  <Alarm Enabled="true">
+    <DateTime>2012-05-20T12:00:00</DateTime>
+    <Description>Test</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-21T14:00:00</DateTime>
+    <Description>trololo</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-21T12:00:00</DateTime>
+    <Description>test2</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
 </ArrayOfAlarm>

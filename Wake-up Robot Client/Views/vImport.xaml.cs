@@ -19,7 +19,7 @@ namespace Wake_up_Robot_Client.Views
     /// </summary>
     public partial class vImport : Window
     {
-        private cMain controller;
+        private cMain controller = cMain.Instance;
         public vImport()
         {
             InitializeComponent();
@@ -36,6 +36,28 @@ namespace Wake_up_Robot_Client.Views
             {
                 controller.ShowImportIcalWindow();
             }
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void rdb_Checked(object sender, RoutedEventArgs e)
+        {
+            bool rdbChecked = false; //we assume there none of the radiobuttons is checked
+            foreach (RadioButton rdb in radioButtons.Children)
+            {
+                if (!rdbChecked)
+                {
+                    if ((bool)rdb.IsChecked)
+                    {
+                        rdbChecked = true;
+                    }
+                }
+            }
+            btnNext.IsEnabled = rdbChecked; //button next is enabled if there is a checkbox checked
         }
 
         

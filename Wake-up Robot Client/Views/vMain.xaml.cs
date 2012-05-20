@@ -31,10 +31,6 @@ namespace Wake_up_Robot_Client
                 InitializeComponent();
                 controller = cMain.Instance; //Get the singleton
                 DataContext = controller;
-                foreach (string s in SerialPort.GetPortNames())
-                {
-                    comboBox1.Items.Add(s);
-                }
             }
             catch (Exception ex)
             {
@@ -42,9 +38,14 @@ namespace Wake_up_Robot_Client
             }
         }
 
+        void prog_WorkerProgress(int progress)
+        {
+            progressBar.Value = progress;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+           
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -76,8 +77,12 @@ namespace Wake_up_Robot_Client
 
         private void btnProgram_Click(object sender, RoutedEventArgs e)
         {
+            TestPort();
             Alarm  b = new Alarm(new DateTime(2012, 5, 11, 11, DateTime.Now.Minute+1, 00), "test");
-            prog.ProgramAlarm(b);
+            if (prog != null)
+            {
+                prog.ProgramAlarm(b);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -87,7 +92,21 @@ namespace Wake_up_Robot_Client
 
         private void portlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            prog = new cProgrammer(comboBox1.SelectedItem.ToString());
+            prog = new cProgrammer(cmbPorts.SelectedItem.ToString());
+            prog.WorkerProgress += new WriteProgress(prog_WorkerProgress);
+            TestPort();
+        }
+
+        private void TestPort()
+        {
+            if (prog != null && prog.Exists)
+            {
+                btnProgram.IsEnabled = true;
+            }
+            else
+            {
+                btnProgram.IsEnabled = false;
+            }
         }
 
     }

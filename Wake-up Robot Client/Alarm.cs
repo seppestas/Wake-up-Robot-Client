@@ -281,7 +281,7 @@ namespace Wake_up_Robot_Client
         /// <param name="description"></param>
         public Alarm()
         {
-            this.enabled = true;
+            this.enabled = false;
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace Wake_up_Robot_Client
         {
             this.dateTime = dateTime;
             this.description = description;
-            this.enabled = true;
+            this.enabled = false;
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace Wake_up_Robot_Client
             this.description = description;
             this.recurrencyInterval = recurrencyInterval;
             this.endRecurrency = endRecurrency;
-            this.enabled = true;
+            this.enabled = false;
         }
 
         /// <summary>
