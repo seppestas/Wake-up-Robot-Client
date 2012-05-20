@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Wake_up_Robot_Client.Views.vICal"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Importeer ICal" MinHeight="135" MaxHeight="135" Width="300" MinWidth="300" Name="vImportICal" WindowStartupLocation="CenterScreen">
+        Title="Importeer ICal" MinHeight="135" MaxHeight="135" Width="300" MinWidth="300" Name="vImportICal" WindowStartupLocation="CenterScreen" Icon="clock.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"     Name="LeftMargin"/>

@@ -60,4 +60,22 @@
     <RecurrencyInterval>00:00:00</RecurrencyInterval>
     <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
   </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-21T12:00:00</DateTime>
+    <Description>fubar</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-21T13:00:00</DateTime>
+    <Description>fubar</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-21T13:00:00</DateTime>
+    <Description>fubar2</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
 </ArrayOfAlarm>

@@ -20,28 +20,40 @@ namespace Wake_up_Robot_Client.Views
     public partial class vNewAlarm : Window
     {
         private cMain controller;
+        Alarm editAlarm;
 
         public vNewAlarm()
         {
             Initialize();
+            btnAddEdit.Content = "Toevoegen";
+            this.Title = "Alarm toevoegen";
         }
 
         public vNewAlarm(Alarm alarm)
         {
-            
             Initialize();
+            btnAddEdit.Content = "Aanpassen";
+            this.Title = "Alarm aanpassen";
             if (alarm != null)
             {
+                editAlarm = alarm;
                 txtDescription.Text = alarm.Description;
                 txtTime.Text = alarm.DateTime.ToString("HH:mm:ss");
                 txtDate.Text = alarm.DateTime.ToString("dd/MM/yyy");
             }
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnAddEdit_Click(object sender, RoutedEventArgs e)
         {
-            DateTime dateTime = DateTime.Parse(txtDate.Text + " " + txtTime.Text);
-            controller.AddAlarm(new Alarm(dateTime, txtDescription.Text));
+            if (editAlarm != null)
+            {
+                DateTime dateTime = DateTime.Parse(txtDate.Text + " " + txtTime.Text);
+                controller.AddAlarm(new Alarm(dateTime, txtDescription.Text));
+            }
+            else
+            {
+                editAlarm.Disable();
+            }
             controller.StoreAlarms();
             this.Close();
         }
@@ -69,6 +81,25 @@ namespace Wake_up_Robot_Client.Views
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtDate_GotFocus(object sender, RoutedEventArgs e)
+        {
+            
+            calendar.IsEnabled = true;
+            calendar.Visibility = Visibility.Visible;
+            
+        }
+
+        private void txtDate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            calendar.IsEnabled = false;
+                calendar.Visibility = Visibility.Collapsed;
         }
     }
 }

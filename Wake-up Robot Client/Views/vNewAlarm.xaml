@@ -1,49 +1,107 @@
 ﻿<Window x:Class="Wake_up_Robot_Client.Views.vNewAlarm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="New Alarm" Height="439" Width="614">
+        Title="New Alarm" Height="314" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignWidth="360" SizeToContent="Width" WindowStartupLocation="CenterScreen" Icon="clock.ico">
     <Grid>
-        <Grid Height="38" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="413" Margin="12,0,0,0">
-            <Label 
-                Name="lblDescr" Content="Description" 
-                Height="28" 
-                HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                Margin="6,6,0,0"
-            />
-            <TextBox
-                Name="txtDescription"
-                Height="23" Width="324"
-                HorizontalAlignment="Right" VerticalAlignment="Top"
-                Margin="0,8,12,0"
-            />
-        </Grid>
-      
-        <Grid Height="326" HorizontalAlignment="Left" Margin="12,37,0,0" Name="grid2" VerticalAlignment="Top" Width="401">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="76*" />
-                <ColumnDefinition Width="325*" />
-            </Grid.ColumnDefinitions>
-            <Label 
-                Content="Time" Name="lblTime"
-                Height="28" 
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,0,0,0" />
-            <TextBox
-                Name="txtTime"
-                Height="23" Width="132"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,2,0,0" Grid.Column="1" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"     Name="LeftMargin"/>
+            <ColumnDefinition               Name="Textboxes"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Grid.Column="1"
+                    Name="lblDescr" Content="Beschrijving" 
+                    Height="28" Width="80"
+                    HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                />
+                <TextBox
+                    Name="txtDescription"
+                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Height="23" Width="200" 
+                />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label 
+                    Content="Datum" Name="lblDate"
+                    Height="28" Width="80"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" 
+                />
+                <TextBox 
+                    Name="txtDate"
+                    Height="23" Width="200"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" GotFocus="txtDate_GotFocus" LostFocus="txtDate_LostFocus" />
+            </StackPanel>
+            
+           
+            <StackPanel Orientation="Horizontal">
+                <Label
+                    Content="Time" Name="lblTime"
+                    Height="28" Width="80"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" 
+                />
+                <TextBox
+                    Name="txtTime"
+                    Height="23" Width="200"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" 
+                />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton 
+                    Name="rdbRecure" Content="Herhalen..." 
+                    Height="16" Width="80"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                />
+                <StackPanel Width="200" >
+                    <ComboBox 
+                        Name="cmbRecType"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                    />
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="om de"/>
+                        <ComboBox 
+                            Name="cmbEvery"
+                            Width="57"
+                            HorizontalAlignment="Left"
+                        />
+                        <Label
+                            Name="lblType"
+                            Content="dagen"
+                        />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="tot"/>
+                        <TextBox Width="122">trololo</TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
 
-            <Label 
-                Content="Date" Name="lblDate"
-                Height="28" 
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,29,0,0" />
-            <TextBox 
-                Name="txtDate"
-                Height="23" Width="132"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Grid.Column="1" />
-            <Calendar Height="167" HorizontalAlignment="Right" Name="calendar" VerticalAlignment="Top" Width="182" Margin="0,34,0,0" SelectedDatesChanged="calendar_SelectedDatesChanged" Grid.Column="1" />
-        </Grid>
+        <Calendar Grid.Column="1"
+                Name="calendar"
+                Height="167"  Width="182"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="80,50,0,0" 
+                SelectedDatesChanged="calendar_SelectedDatesChanged"
+                IsEnabled="False"
+                Visibility="Collapsed"
+        />
+
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button  Margin="2"
+                Name="btnCancel"
+                Content="Annuleer"  Height="23"   Width="75" 
+                Click="btnCancel_Click" 
+            />
+
+            <Button  Margin="2"
+                Name="btnAddEdit"
+                Content="Importeer"  Height="23"   Width="75" 
+                Click="btnAddEdit_Click"
+                IsEnabled="False"
+            />
+
+        </StackPanel>
         
-        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0,0,93,12" Name="btnCancel" Width="75" Height="23" VerticalAlignment="Bottom" />
-        <Button Content="Add" HorizontalAlignment="Right" Margin="0,0,12,12" Name="btnAdd" Width="75" Height="23" VerticalAlignment="Bottom" Click="btnAdd_Click" />
     </Grid>
 </Window>

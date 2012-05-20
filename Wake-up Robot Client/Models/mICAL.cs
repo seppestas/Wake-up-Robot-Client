@@ -5,6 +5,7 @@ using System.Text;
 using DDay.iCal;
 using DDay.iCal.Components;
 using DDay.iCal.DataTypes;
+using DDay.iCal.Serialization;
 
 namespace Wake_up_Robot_Client.Models
 {
@@ -27,7 +28,7 @@ namespace Wake_up_Robot_Client.Models
             iCalendar ical;
             List<Alarm> alarms = new List<Alarm>();
 
-            ical = iCalendar.LoadFromFile(icalFileLocation);
+            ical = iCalendar.LoadFromFile(@icalFileLocation);
             foreach (Event evt in ical.Events)
             {
                 foreach (DDay.iCal.Components.Alarm icalAlarm in evt.Alarms)

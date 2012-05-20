@@ -109,5 +109,10 @@ namespace Wake_up_Robot_Client
             }
         }
 
+        private void lstAlarms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnEdit.IsEnabled = btnRemove.IsEnabled = lstAlarms.SelectedItem != null;
+        }
+
     }
 }
