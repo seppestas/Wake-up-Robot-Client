@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAlarm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Alarm Enabled="false">
+    <DateTime>2012-05-26T08:00:00</DateTime>
+    <Description>I'm awesome</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="true">
+    <DateTime>2012-05-27T22:03:00</DateTime>
+    <Description>Trololo</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="true">
+    <DateTime>2012-05-27T22:15:00</DateTime>
+    <Description>Dit is een test</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-25T22:06:00+02:00</DateTime>
+    <Description>Something is wrong</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-25T23:00:00+02:00</DateTime>
+    <Description>Trololo</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-26T00:07:00+02:00</DateTime>
+    <Description>Nieuw alarm</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-27T02:00:00</DateTime>
+    <Description>Nieuw alarm</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-27T00:48:00</DateTime>
+    <Description>Nieuw alarm</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="true">
+    <DateTime>2012-06-14T08:00:00</DateTime>
+    <Description>test zoveel</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-26T15:15:00+02:00</DateTime>
+    <Description>snel!</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-26T16:20:00+02:00</DateTime>
+    <Description>Teest</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-26T16:22:00+02:00</DateTime>
+    <Description>Trolllllll</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+  <Alarm Enabled="false">
+    <DateTime>2012-05-26T16:30:00+02:00</DateTime>
+    <Description>Nieuw alarm</Description>
+    <RecurrencyInterval>00:00:00</RecurrencyInterval>
+    <EndRecurrency>0001-01-01T00:00:00</EndRecurrency>
+  </Alarm>
+</ArrayOfAlarm>

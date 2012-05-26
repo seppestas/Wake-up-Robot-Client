@@ -1,0 +1,44 @@
+﻿<Window x:Class="Wake_up_Robot_Client.Views.vGoogle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Importeer Google Calender" Height="301" Width="208"
+        WindowStartupLocation="CenterScreen" Icon="clock.ico" Name="vImportGoogleCal">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"     Name="LeftMargin"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="1">
+            
+                <Label Name="lblUsername">Gebruikersnaam</Label>
+                <TextBox Name="txtUsername" Width="150" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <Label Name="lblPassword">Wachtwoord</Label>
+                <PasswordBox Name="txtPassword" Width="150" HorizontalAlignment="Left" Margin="10,0,0,0"></PasswordBox>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Button 
+                Name="bntLoadCalendars" Content="Laad calenders" 
+                Height="23"  Width="80" 
+                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="0,95,6,0" Click="bntLoadCalendars_Click" />
+            <Label 
+                Name="lblCalendars" Content="Calenders" Margin="4,124,4,0" Height="25" VerticalAlignment="Top" />
+            <ListBox Name="lstCalendars" Margin="10,149,6,35" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="False" />
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="2">
+            <Button  Margin="2"
+                Name="btnCancel"
+                Content="Annuleer"  Height="23"   Width="75" 
+                Click="btnCancel_Click" />
+
+            <Button  Margin="2"
+                Name="btnImport"
+                Content="Importeer"  Height="23"   Width="75" 
+                Click="btnNext_Click"
+                IsEnabled="False"
+            />
+
+        </StackPanel>
+    </Grid>
+</Window>
