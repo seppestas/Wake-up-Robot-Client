@@ -11,7 +11,8 @@
     <RootNamespace>Wake_up_Robot_Client</RootNamespace>
     <AssemblyName>Wake-up Robot Client</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -36,27 +37,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="antlr.runtime">
-      <HintPath>Include\antlr.runtime.dll</HintPath>
+    <Reference Include="antlr.runtime, Version=2.7.6.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\ICal\antlr.runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DDay.iCal">
-      <HintPath>Include\DDay.iCal.dll</HintPath>
+    <Reference Include="DDay.iCal, Version=0.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\ICal\DDay.iCal.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth">
-      <HintPath>Dependencies\DotNetOpenAuth.dll</HintPath>
+      <HintPath>Dependencies\GCal\DotNetOpenAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.2.4507.26291, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Google.Apis, Version=1.2.4546.26554, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\Google.Apis.dll</HintPath>
+      <HintPath>Dependencies\GCal\Google.Apis.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Authentication.OAuth2">
-      <HintPath>Include\Google.Apis.Authentication.OAuth2.dll</HintPath>
+      <HintPath>Dependencies\GCal\Google.Apis.Authentication.OAuth2.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Calendar.v3">
-      <HintPath>Include\Google.Apis.Calendar.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Calendar.v3, Version=1.2.4507.26269, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\GCal\Google.Apis.Calendar.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Tools.CodeGen">
+      <HintPath>Dependencies\GCal\Google.Apis.Tools.CodeGen.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net35, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\GCal\Newtonsoft.Json.Net35.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Silverlight">
+      <HintPath>Dependencies\GCal\Newtonsoft.Json.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -74,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\cGoogle.cs" />
     <Compile Include="Controllers\cProgrammer.cs" />
     <Compile Include="Models\mICAL.cs" />
     <Compile Include="Views\vGoogle.xaml.cs">
@@ -139,6 +158,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -152,11 +172,7 @@
     <Resource Include="Views\clock.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dependencies\antlr.runtime.dll" />
-    <Content Include="Dependencies\DDay.iCal.dll" />
-    <Content Include="Dependencies\Google.Apis.Authentication.OAuth2.dll" />
-    <Content Include="Dependencies\Google.Apis.Calendar.v3.dll" />
-    <Content Include="Dependencies\Google.Apis.dll" />
+    <Folder Include="Dependencies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

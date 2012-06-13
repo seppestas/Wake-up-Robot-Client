@@ -19,8 +19,6 @@ namespace Wake_up_Robot_Client.Controllers
         private static object syncRoot = new Object();
         public event EventHandler AlarmsChanged;
         public event PropertyChangedEventHandler PropertyChanged;
-        private cGoogle googleController;
-
 
         ObservableCollection<Alarm> alarms;
         #endregion // private varibles
@@ -108,7 +106,7 @@ namespace Wake_up_Robot_Client.Controllers
         #region public
 
         /// <summary>
-        /// Returns the instance of the main controller singleton
+        /// Returns the instance of the singleton
         /// </summary>
         public static cMain Instance
         {
@@ -197,6 +195,13 @@ namespace Wake_up_Robot_Client.Controllers
         public void LoadIcalAlarms(String icalFileLocation)
         {
             AddAlarms(mICAL.GetAlarms(icalFileLocation));
+        }
+
+        //Goolge
+        public List<String> GetCalendarList(string username, string password)
+        {
+            //Models.mGoogle googleModel = new mGoogle(username, password);
+            return null;
         }
 
         #endregion //public

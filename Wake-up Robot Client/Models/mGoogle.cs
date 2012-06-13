@@ -3,50 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
+using DotNetOpenAuth.OAuth2;
+using Google.Apis.Authentication;
 using Google.Apis.Authentication.OAuth2;
 using Google.Apis.Authentication.OAuth2.DotNetOpenAuth;
+using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Util;
-//using DotNetOpenAuth.OAuth2;
+using Google.Apis.Requests;
 
 namespace Wake_up_Robot_Client.Models
 {
-    //class mGoogle
-    //{
-    //    private string apiKey = "AIzaSyDhY_4M7P5GGr0XTBqHMXTTTkfr3j_BgJI";
+    class mGoogle
+    {
+        CalendarService service;       
+        IList<CalendarListEntry> calendars;
 
-    //    public mGoogle(string username, string password)
-    //    {
-    //        // Register the authenticator.
-    //        var provider = new NativeApplicationClient(GoogleAuthenticationServer.Description);
-    //        provider.ClientIdentifier = "528532804655.apps.googleusercontent.com";
-    //        provider.ClientSecret = "9QSFSAg0dE5CqC5F_Ot6MD8f";
-    //        var auth = new OAuth2Authenticator<NativeApplicationClient>(provider, GetAuthorization);
+        public mGoogle(CalendarService googleCalendarService)
+        {
+            service = googleCalendarService;
+        }
 
-    //        // Create the service.
-    //        var service = new CalendarService(auth);
-    //        CalendarList results = service.CalendarList.List().Fetch();
-    //        Console.WriteLine("Lists:");
+        /// <summary>
+        /// Returns the list of calendarnames in the calendarservice
+        /// </summary>
+        public List<String> CalendarNames
+        {
+            get
+            {
+                List<String> calendarSummaries = new List<string>();
 
-    //    }
+                calendars = service.CalendarList.List().Fetch().Items;
+                foreach (CalendarListEntry calendar in calendars)
+                {
+                    calendarSummaries.Add(calendar.Summary);
+                }
+                return calendarSummaries;
+            }
+        }
 
-    //    private static IAuthorizationState GetAuthorization(NativeApplicationClient arg)
-    //    {
-    //        // Get the auth URL:
-    //        IAuthorizationState state = new AuthorizationState(new[] { CalendarService.Scopes.Calendar.GetStringValue() });
-    //        state.Callback = new Uri(NativeApplicationClient.OutOfBandCallbackUrl);
-    //        Uri authUri = arg.RequestUserAuthorization(state);
-
-    //        // Request authorization from the user (by opening a browser window):
-    //        Process.Start(authUri.ToString());
-    //        Console.Write("  Authorization Code: ");
-    //        string authCode = Console.ReadLine();
-    //        Console.WriteLine();
-
-    //        // Retrieve the access token by using the authorization code:
-    //        return arg.ProcessUserAuthorization(authCode, state);
-    //    }
-        
-    //}
+        /// <summary>
+        /// Returns the list of future alarms in the google calendar
+        /// </summary>
+        /// <param name="index">Index of the google calendar in the calendar service</param>
+        /// <returns></returns>
+        public List<Alarm> GetAlarmsFromGcal(int index)
+        {
+            List<Alarm> alarms = new List<Alarm>();
+            var calendar = calendars[index];
+            var resource = service.Events.List(calendar.Id);
+            resource.TimeMin = DateTime.Now.ToString("yyy-MM-ddTHH:mm:ss") + "+" + TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).ToString("hhmm");
+            var events = resource.Fetch().Items;
+            if (events != null)
+            {
+                foreach (Event evt in events)
+                {
+                    if (evt.Reminders.Overrides != null)
+                    {
+                        foreach (EventReminder reminder in evt.Reminders.Overrides)
+                        {
+                            if (reminder.Method == "popup")
+                            {
+                                alarms.Add(new Alarm(DateTime.Parse(evt.Start.DateTime) - new TimeSpan(0, 0, Convert.ToInt16(reminder.Minutes.Value * 60)), evt.Summary));
+                            }
+                        }
+                    }
+                }
+            }
+            return alarms;
+        }
+    }
 }

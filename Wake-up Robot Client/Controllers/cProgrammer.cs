@@ -109,10 +109,8 @@ namespace Wake_up_Robot_Client.Controllers
             {
                 bw.RunWorkerAsync();
             }
-
         }
 
-        
         public void ProgramAlarm(Alarm alarm)
         {
             List<Alarm> alarms = new List<Alarm>();
@@ -136,7 +134,6 @@ namespace Wake_up_Robot_Client.Controllers
             return SerialPort.GetPortNames();            
         }
 
-        
         #endregion //public
 
         #region private
