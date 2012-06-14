@@ -67,41 +67,6 @@ namespace Wake_up_Robot_Client.Controllers
             }
         }
 
-        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            if (WorkerProgress != null)
-            {
-                WorkerProgress(e.ProgressPercentage, e.UserState.ToString());
-            }
-        }
-
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            try
-            {
-                int i = 1;
-                worker.ReportProgress(0,"Poort openen");
-                if (!port.IsOpen)
-                    port.Open(); //Open the connection if it's not already open
-
-                port.Write(CurrentTimeBuffer, 0, CurrentTimeBuffer.Length);
-                foreach (Alarm alarm in alarmsToWrite)
-                {
-                    worker.ReportProgress((i / alarmsToWrite.Count) * 50, "Alarm " + i.ToString() + "/" + alarmsToWrite.Count);
-                    var alarmbuffer = AlarmBuffer(alarm);
-                    port.Write(alarmbuffer, 0, alarmbuffer.Length);
-                    alarm.Enable();
-                    worker.ReportProgress((i / alarmsToWrite.Count) * 100, "Alarm " + i.ToString() + "/" + alarmsToWrite.Count);
-                    i++;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex; //TODO: Exception handling
-            }
-        }
-
         public void ProgramAlarms(List<Alarm> alarms)
         {
             alarmsToWrite = alarms;
@@ -137,7 +102,42 @@ namespace Wake_up_Robot_Client.Controllers
         #endregion //public
 
         #region private
-        
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (WorkerProgress != null)
+            {
+                WorkerProgress(e.ProgressPercentage, e.UserState.ToString());
+            }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            try
+            {
+                int i = 1;
+                worker.ReportProgress(0, "Poort openen");
+                if (!port.IsOpen)
+                    port.Open(); //Open the connection if it's not already open
+
+                port.Write(CurrentTimeBuffer, 0, CurrentTimeBuffer.Length);
+                foreach (Alarm alarm in alarmsToWrite)
+                {
+                    worker.ReportProgress((i / alarmsToWrite.Count) * 50, "Alarm " + i.ToString() + "/" + alarmsToWrite.Count);
+                    var alarmbuffer = AlarmBuffer(alarm);
+                    port.Write(alarmbuffer, 0, alarmbuffer.Length);
+                    alarm.Enable();
+                    worker.ReportProgress((i / alarmsToWrite.Count) * 100, "Alarm " + i.ToString() + "/" + alarmsToWrite.Count);
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex; //TODO: Exception handling
+            }
+        }
+
         private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (!port.IsOpen)

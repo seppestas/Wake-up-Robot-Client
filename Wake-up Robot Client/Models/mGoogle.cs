@@ -11,6 +11,7 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Util;
 using Google.Apis.Requests;
+using Google;
 
 namespace Wake_up_Robot_Client.Models
 {
@@ -32,8 +33,14 @@ namespace Wake_up_Robot_Client.Models
             get
             {
                 List<String> calendarSummaries = new List<string>();
-
-                calendars = service.CalendarList.List().Fetch().Items;
+                try
+                {
+                    calendars = service.CalendarList.List().Fetch().Items;
+                }
+                catch (GoogleApiRequestException ex)
+                {
+                    throw ex as Exception;
+                }
                 foreach (CalendarListEntry calendar in calendars)
                 {
                     calendarSummaries.Add(calendar.Summary);

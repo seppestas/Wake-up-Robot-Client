@@ -60,12 +60,14 @@ namespace Wake_up_Robot_Client.Views
         void googleController_AuthDone()
         {
             googleController.FetchCalendarNames();
-            status = "Agendas ophalen";
+            status = "Kalenders ophalen";
         }
         #endregion
 
         private void bntLoadCalendars_Click(object sender, RoutedEventArgs e)
         {
+            Button loadButton = sender as Button;
+            loadButton.IsEnabled = false;
             try
             {
                 status = "Authenticeren";

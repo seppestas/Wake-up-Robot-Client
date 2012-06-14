@@ -12,6 +12,7 @@ using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Util;
 using Wake_up_Robot_Client.Models;
 using System.ComponentModel;
+using System.Windows;
 
 namespace Wake_up_Robot_Client.Controllers
 {
@@ -148,7 +149,14 @@ namespace Wake_up_Robot_Client.Controllers
         void fetchWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            calendarNames = googleModel.CalendarNames;
+            try
+            {
+                calendarNames = googleModel.CalendarNames;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             worker.ReportProgress(100);
         }
 
